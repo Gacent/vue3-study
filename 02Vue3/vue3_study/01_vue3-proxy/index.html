@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      vue2和vue3的数据响应式方法的区别,为什么要改用proxy
+      1. Object.defineProperty
+        1. 不能监听数组的变化,使用的是数组原型重写的方式实现的
+        2. 必须遍历每个对象的属性
+        3. 必须深层遍历嵌套的对象
+      2. Proxy
+        1. 支持数组
+        2. 不需要遍历每个对象的属性
+        3. 一样不支持深层次嵌套
+        4. 有13种拦截方式
+    */
+    let obj={
+      name:'佐助',
+      age:18,
+      wife:{
+        name:'小银',
+        age:22
+      },
+      arr:[1,2,3]
+    }
+    let proxyUser=new Proxy(obj,{
+      get(target,prop){
+        console.log('调用get方法---'+prop)
+        return Reflect.get(target,prop)
+      },
+      set(target,prop,value){
+        console.log('调用set方法---'+prop)
+        return Reflect.set(target,prop,value)
+      },
+      deleteProperty(target,prop){
+        return Reflect.deleteProperty(target,prop)
+      }
+    })
+    // proxyUser.name  //get
+    // proxyUser.name='鸣人' // set
+    // proxyUser.gender='男' // add
+    // delete proxyUser.age
+    proxyUser.wife.name="雏田"  // 触发不了深层的set方法
+    proxyUser.wife='as'   // 可以触发set方法
+    proxyUser.arr[1]=0  // 触发不了set方法
+    console.log(proxyUser,obj)
+    // 综上所述:和Object.defineProperty一样不支持嵌套
+  </script>
+</body>
+</html>

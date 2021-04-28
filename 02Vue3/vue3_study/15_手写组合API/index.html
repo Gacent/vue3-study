@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="./index.js"></script>
+  <script>
+
+    // ===================================reactive
+    // let proxy1=shallowReactive({
+    //   name:'zjs',
+    //   color:{
+    //     name:'yellow'
+    //   }
+    // })
+    // let proxy2=reactive({
+    //   name:'zjs2',
+    //   color:{
+    //     name:'yellow2'
+    //   }
+    // })
+    // 拦截了color的get
+    // proxy1.color.name+='==='
+
+    // 拦截了color，name的get，以及name的set
+    // proxy2.color.name+='==='
+
+    // =====================================readonly
+    // readonly
+    // let proxy1=shallowReadonly({
+    //   name:'zjs',
+    //   color:{
+    //     name:'yellow'
+    //   }
+    // })
+    // let proxy2=readonly({
+    //   name:'zjs',
+    //   color:{
+    //     name:'yellow'
+    //   }
+    // })
+    // 拦截set name
+    // 只能读取name属性
+    // proxy1.name="aa"
+    // 拦截get  color
+    // proxy1.color.name="blue"
+
+    // 拦截set name
+    // 只能读取name属性
+    // proxy2.name="aa"
+    // 拦截get  color
+    // 拦截set  name
+    // 只能读取name数据
+    // proxy2.color.name="blue"
+    // console.log(proxy2)
+    // ======================================ref
+    // let proxy1=shallowRef({
+    //   name:'zjs',
+    //   color:{
+    //     name:'yellow'
+    //   }
+    // })
+    // // 劫持value
+    // proxy1.value.name+='zjs'
+    // // 劫持value
+    // proxy1.value.color.name+='zjs'
+    // // 设置劫持了value
+    // proxy1.value=1
+    // let proxy2=ref({
+    //   name:'zjs',
+    //   color:{
+    //     name:'yellow'
+    //   }
+    // })
+    // 劫持了value
+    // 拦截get  name
+    // 拦截set  name
+    // proxy2.value.name+='zjs'
+    // 劫持了value
+    // 拦截get  color
+    // 拦截get  name
+    // 拦截set  name
+    // proxy2.value.color.name+='zjs'
+    // 设置劫持了value
+    // proxy2.value='=='
+    // ===========================================isRef
+    console.log(isRef(ref({})))
+    console.log(isReactive(reactive({})))
+    console.log(isReadonly(readonly({})))
+    console.log(isProxy(readonly({})))
+  </script>
+</body>
+</html>
