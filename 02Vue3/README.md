@@ -231,3 +231,17 @@ setup(){
   - attrs:包含没有在props配置中声明的属性的对象, 相当于 this.$attrs
   - emit:用来分发自定义事件的函数, 相当于 this.$emit
   - slots: 包含所有传入的插槽内容的对象, 相当于 this.$slots
+
+
+## 面试题
+2020.9发布的vue3
+- 支持大部分vue2
+- 组合API，复用性强
+  - 在传统的Vue中，新增一个需求或者修改需求，就需要分别在data，methods，computed里修改，很麻烦
+  - 组合API方式更清晰
+- 更好支持TS
+- 最主要
+  - vue3使用proxy配合reflect代替了Object.defineProperty方法实现数据的响应式
+  - 重写了虚拟DOM
+  - 新的组件：Fragment（片段）/Teleport（瞬移）/suspense（不确定）
+  - 设计了新的脚手架vite
